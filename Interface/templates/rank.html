@@ -1,51 +1,61 @@
 <html>
 	<head>
-		<title>rank</title>
+		<title>Witch Doctor Rank</title>
+		<h3 align="center">Witch Doctor Leader Board</h3>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
 	</head>
 
 	<body>
 		<script src="static/D3Tooltip.js"></script>
+		<hr>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-2">
 					<table>
 						<tr>
-							<td>
-								<img src="static/WD_M.jpg">
-							</td>							
+							<td><img src="static/WD_M.jpg" style="width: 80%; height: 50%"></td>
 						</tr>
-						{% for key, value in profile %}
-							<tr>
-								<td>{{ key }}: {{value}}</td>
-        					</tr>
-      					{% endfor %}
+						<tr>
+							<td><b>Name</b>: {{profile["name"]}}</td>
+						</tr>
+						<tr>
+							<td><b>Rank</b>: {{profile["_id"]}}</td>			
+						</tr>
+						<tr>
+							<td><b>Paragon</b>: {{profile["paragonLevel"]}}</td>
+						</tr>
+						<tr>
+							<td><b>Tier</b>: {{profile["tier"]}}</td>
+						</tr>
+						<tr>					
+							<td><b>Time</b>: {{profile["time"]}}</td>
+						</tr>      				
 					</table>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-6">
 					{% for hero in heroes %}
 						<div class="alert alert-info">
-						Intelligence: {{hero["Intelligence"]}} Damage:  {{hero["Damage"]}} LIFE: {{hero["LIFE"]}}
+						<b>ID</b>:{{hero["ID"]}}&nbsp;&nbsp;<b>Intelligence</b>:{{hero["Intelligence"]}}&nbsp;&nbsp;<b>Vitality</b>:{{hero["Vitality"]}}&nbsp;&nbsp;<b>Recovery</b>:{{hero["Recovery"]}}
 						<br>
-						Vitality: {{hero["Vitality"]}} Toughness: {{hero["Toughness"}} MANA {{hero["MANA"}}
+						<b>Damage</b>:{{hero["Damage"]}}&nbsp;&nbsp;<b>Toughness</b>:{{hero["Toughness"]}}&nbsp;&nbsp;<b>LIFE</b>:{{hero["LIFE"]}}&nbsp;&nbsp;<b>MANA</b>:{{hero["MANA"]}}
 						</div>
 						<br>
-					{$ endfor %}
+					{% endfor %}
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<table>
 						<tr>
 							<td width="33%" valign="top">
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["shoulder"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["shoulders"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Shoulders</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["shoulder"]["url"]}}><font color={{item["shoulder"]["color"]}}><b>{{item["shoulder"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["shoulders"]["tooltipParams"]}}"><font color={{item["shoulders"]["displayColor"]}}><b>{{item["shoulders"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -54,12 +64,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["head"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["head"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Head</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["head"]["url"]}}><font color={{item["head"]["color"]}}><b>{{item["head"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["head"]["tooltipParams"]}}"><font color={{item["head"]["displayColor"]}}><b>{{item["head"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -68,12 +78,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["neck"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["neck"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Neck</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["neck"]["url"]}}><font color={{item["neck"]["color"]}}><b>{{item["neck"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["neck"]["tooltipParams"]}}"><font color={{item["neck"]["displayColor"]}}><b>{{item["neck"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -84,12 +94,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["hands"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["hands"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Hands</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["hands"]["url"]}}><font color={{item["hands"]["color"]}}><b>{{item["hands"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["hands"]["tooltipParams"]}}"><font color={{item["hands"]["displayColor"]}}><b>{{item["hands"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -98,12 +108,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["torso"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["torso"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Torso</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["torso"]["url"]}}><font color={{item["torso"]["color"]}}><b>{{item["torso"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["torso"]["tooltipParams"]}}"><font color={{item["torso"]["displayColor"]}}><b>{{item["torso"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -112,12 +122,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["bracers"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["bracers"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Bracers</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["bracers"]["url"]}}><font color={{item["bracers"]["color"]}}><b>{{item["bracers"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["bracers"]["tooltipParams"]}}"><font color={{item["bracers"]["displayColor"]}}><b>{{item["bracers"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -128,12 +138,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["leftFinger"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["leftFinger"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Left Finger</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["leftFinger"]["url"]}}><font color={{item["leftFinger"]["color"]}}><b>{{item["leftFinger"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["leftFinger"]["tooltipParams"]}}"><font color={{item["leftFinger"]["displayColor"]}}><b>{{item["leftFinger"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -142,12 +152,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["waist"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["waist"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Waist</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["waist"]["url"]}}><font color={{item["waist"]["color"]}}><b>{{item["waist"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["waist"]["tooltipParams"]}}"><font color={{item["waist"]["displayColor"]}}><b>{{item["waist"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -156,12 +166,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["rightFinger"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["rightFinger"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Right Finger</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["rightFinger"]["url"]}}><font color={{item["rightFinger"]["color"]}}><b>{{item["rightFinger"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["rightFinger"]["tooltipParams"]}}"><font color={{item["rightFinger"]["displayColor"]}}><b>{{item["rightFinger"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -172,12 +182,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["mainHand"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["mainHand"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Main Hand</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["mainHand"]["url"]}}><font color={{item["mainHand"]["color"]}}><b>{{item["mainHand"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["mainHand"]["tooltipParams"]}}"><font color={{item["mainHand"]["displayColor"]}}><b>{{item["mainHand"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -186,12 +196,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["legs"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["legs"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Legs</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["legs"]["url"]}}><font color={{item["legs"]["color"]}}><b>{{item["legs"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["legs"]["tooltipParams"]}}"><font color={{item["legs"]["displayColor"]}}><b>{{item["legs"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -200,12 +210,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["offHand"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["offHand"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Off Hand</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["offHand"]["url"]}}><font color={{item["offHand"]["color"]}}><b>{{item["offHand"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["offHand"]["tooltipParams"]}}"><font color={{item["offHand"]["displayColor"]}}><b>{{item["offHand"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
@@ -218,12 +228,12 @@
 								<table>
 									<tr>
 										<td width="33%" valign="top" align="center">
-											<img border="0" src={{item["feet"]["icon"]}} >
+											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["feet"]["icon"]}}.png">
 										</td>
 										<td>
 											<b>Feet</b>
 											<br>
- 											<a href="http://us.battle.net/d3/en/" + {{item["feet"]["url"]}}><font color={{item["feet"]["color"]}}><b>{{item["feet"]["name"]}}</b></font></a>
+ 											<a href="http://us.battle.net/d3/en/{{item["feet"]["tooltipParams"]}}"><font color={{item["feet"]["displayColor"]}}><b>{{item["feet"]["name"]}}</b></font></a>
 										</td>
 									</tr>
 								</table>
