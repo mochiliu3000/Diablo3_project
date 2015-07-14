@@ -2,12 +2,19 @@
 	<head>
 		<title>Witch Doctor Rank</title>
 		<h3 align="center">Witch Doctor Leader Board</h3>
+		<form id="formRank" action="" class="container" method="post" align="right">
+				<label for="rank"><i>Please enter a rank number: </i></label>
+        		<input type="text" name="rank" value="{{request.form.rank}}" style="width: 7%">
+        		<input id="iptHeroId" type="hidden" name="heroId" value="{{request.form.heroId}}" />
+        		<input class="btn btn-primary" type="submit" value="Search">
+      	</form>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">		
 	</head>
 
 	<body>
 		<script src="static/D3Tooltip.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<hr>
 		<div class="container">
 			<div class="row">
@@ -35,14 +42,25 @@
 				</div>
 				<div class="col-md-6">
 					{% for hero in heroes %}
-						<div class="alert alert-info">
-						<b>ID</b>:{{hero["ID"]}}&nbsp;&nbsp;<b>Intelligence</b>:{{hero["Intelligence"]}}&nbsp;&nbsp;<b>Vitality</b>:{{hero["Vitality"]}}&nbsp;&nbsp;<b>Recovery</b>:{{hero["Recovery"]}}
-						<br>
-						<b>Damage</b>:{{hero["Damage"]}}&nbsp;&nbsp;<b>Toughness</b>:{{hero["Toughness"]}}&nbsp;&nbsp;<b>LIFE</b>:{{hero["LIFE"]}}&nbsp;&nbsp;<b>MANA</b>:{{hero["MANA"]}}
+						<div class="alert alert-info" id="test">								
+							<b>ID</b>:{{hero["ID"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Intelligence</b>:{{hero["Intelligence"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Vitality</b>:{{hero["Vitality"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Recovery</b>:{{hero["Recovery"]}}
+
+							<label id="heroId" style="visibility:hidden">{{hero["_id"]}}</label>
+
+							<b>Damage</b>:{{hero["Damage"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Toughness</b>:{{hero["Toughness"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>LIFE</b>:{{hero["LIFE"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>MANA</b>:{{hero["MANA"]}}
 						</div>
 						<br>
 					{% endfor %}
 				</div>
+
+				<script>         
+         			$(".alert.alert-info").click(function() {
+    					var heroId = $(this).find("label").text();
+    					$("#iptHeroId").val(heroId);
+    					$("#formRank").submit();
+					});
+      			</script>
+				
 				<div class="col-md-4">
 					<table>
 						<tr>
