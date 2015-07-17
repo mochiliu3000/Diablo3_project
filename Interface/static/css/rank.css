@@ -1,0 +1,4 @@
+.alert.alert-info:hover{
+    outline: 3px solid blue;
+	cursor: pointer; cursor: hand;
+}

@@ -32,7 +32,7 @@ def leaderBoardCrawler(url, maxItems):
 		print("Crawled players data for rank ", i + 1)
 	return resultList	
 
-leaderBoardResult = leaderBoardCrawler('http://us.battle.net/d3/en/rankings/era/3/rift-wd', 10)
+leaderBoardResult = leaderBoardCrawler('http://us.battle.net/d3/en/rankings/era/3/rift-wd', 100)
 
 
 

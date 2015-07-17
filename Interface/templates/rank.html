@@ -1,66 +1,73 @@
 <html>
 	<head>
 		<title>Witch Doctor Rank</title>
-		<h3 align="center">Witch Doctor Leader Board</h3>
+		<h3 align="center"><i>Witch Doctor Leader Board</i></h3>
 		<form id="formRank" action="" class="container" method="post" align="right">
-				<label for="rank"><i>Please enter a rank number: </i></label>
+				<label for="rank">Please enter a rank number: </label>
         		<input type="text" name="rank" value="{{request.form.rank}}" style="width: 7%">
         		<input id="iptHeroId" type="hidden" name="heroId" value="{{request.form.heroId}}" />
         		<input class="btn btn-primary" type="submit" value="Search">
       	</form>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">		
+		<link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="static/css/rank.css" rel="stylesheet" media="screen">
 	</head>
-
+	<hr>
 	<body>
-		<script src="static/D3Tooltip.js"></script>
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<hr>
+		<script src="static/js/d3Tooltip.js"></script>
+		<script src="static/js/jquery-1.11.3.min.js"></script>		
 		<div class="container">
 			<div class="row">
 				<div class="col-md-2">
 					<table>
 						<tr>
-							<td><img src="static/WD_M.jpg" style="width: 80%; height: 50%"></td>
+							<td align="center"><img src="static/icon/WD_M.jpg" style="width: 80%; height: 50%"></td>
 						</tr>
 						<tr>
-							<td><b>Name</b>: {{profile["name"]}}</td>
+            				<td>&nbsp;</td>
+        				</tr>
+						<tr>
+							<td align="center"><b>{{profile["name"]}}</b></td>
 						</tr>
 						<tr>
-							<td><b>Rank</b>: {{profile["_id"]}}</td>			
+            				<td>&nbsp;</td>
+        				</tr>
+						<tr>
+							<td align="center">Rank: {{profile["_id"]}}</td>			
 						</tr>
 						<tr>
-							<td><b>Paragon</b>: {{profile["paragonLevel"]}}</td>
+							<td align="center">Paragon: {{profile["paragonLevel"]}}</td>
 						</tr>
 						<tr>
-							<td><b>Tier</b>: {{profile["tier"]}}</td>
+							<td align="center">Tier: {{profile["tier"]}}</td>
 						</tr>
 						<tr>					
-							<td><b>Time</b>: {{profile["time"]}}</td>
+							<td align="center">Time: {{profile["time"]}}</td>
 						</tr>      				
 					</table>
 				</div>
+
 				<div class="col-md-6">
 					{% for hero in heroes %}
 						<div class="alert alert-info" id="test">								
-							<b>ID</b>:{{hero["ID"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Intelligence</b>:{{hero["Intelligence"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Vitality</b>:{{hero["Vitality"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Recovery</b>:{{hero["Recovery"]}}
+							<b style="color:OrangeRed">ID:{{hero["ID"]}}</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Intelligence</b>:{{hero["Intelligence"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Vitality</b>:{{hero["Vitality"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Recovery</b>:{{hero["Recovery"]}}
 
 							<label id="heroId" style="visibility:hidden">{{hero["_id"]}}</label>
 
-							<b>Damage</b>:{{hero["Damage"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Toughness</b>:{{hero["Toughness"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>LIFE</b>:{{hero["LIFE"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>MANA</b>:{{hero["MANA"]}}
+							<b style="color:BlueViolet">Damage:{{hero["Damage"]}}</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Toughness</b>:{{hero["Toughness"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>LIFE</b>:{{hero["LIFE"]}}&nbsp;&nbsp;&nbsp;&nbsp;<b>MANA</b>:{{hero["MANA"]}}
 						</div>
 						<br>
 					{% endfor %}
 				</div>
 
-				<script>         
-         			$(".alert.alert-info").click(function() {
-    					var heroId = $(this).find("label").text();
-    					$("#iptHeroId").val(heroId);
-    					$("#formRank").submit();
+				<script type="text/javascript">
+					$(".alert.alert-info").click(function() {
+						var heroId = $(this).find("label").text();
+						$("#iptHeroId").val(heroId);
+						$("#formRank").submit();
 					});
-      			</script>
-				
+				</script>
+
 				<div class="col-md-4">
 					<table>
 						<tr>
@@ -71,7 +78,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["shoulders"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Shoulders</b>
+											<b><i>Shoulders</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["shoulders"]["tooltipParams"]}}"><font color={{item["shoulders"]["displayColor"]}}><b>{{item["shoulders"]["name"]}}</b></font></a>
 										</td>
@@ -85,7 +92,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["head"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Head</b>
+											<b><i>Head</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["head"]["tooltipParams"]}}"><font color={{item["head"]["displayColor"]}}><b>{{item["head"]["name"]}}</b></font></a>
 										</td>
@@ -99,7 +106,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["neck"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Neck</b>
+											<b><i>Neck</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["neck"]["tooltipParams"]}}"><font color={{item["neck"]["displayColor"]}}><b>{{item["neck"]["name"]}}</b></font></a>
 										</td>
@@ -115,7 +122,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["hands"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Hands</b>
+											<b><i>Hands</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["hands"]["tooltipParams"]}}"><font color={{item["hands"]["displayColor"]}}><b>{{item["hands"]["name"]}}</b></font></a>
 										</td>
@@ -129,7 +136,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["torso"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Torso</b>
+											<b><i>Torso</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["torso"]["tooltipParams"]}}"><font color={{item["torso"]["displayColor"]}}><b>{{item["torso"]["name"]}}</b></font></a>
 										</td>
@@ -143,7 +150,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["bracers"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Bracers</b>
+											<b><i>Bracers</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["bracers"]["tooltipParams"]}}"><font color={{item["bracers"]["displayColor"]}}><b>{{item["bracers"]["name"]}}</b></font></a>
 										</td>
@@ -159,7 +166,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["leftFinger"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Left Finger</b>
+											<b><i>Left Finger</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["leftFinger"]["tooltipParams"]}}"><font color={{item["leftFinger"]["displayColor"]}}><b>{{item["leftFinger"]["name"]}}</b></font></a>
 										</td>
@@ -173,7 +180,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["waist"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Waist</b>
+											<b><i>Waist</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["waist"]["tooltipParams"]}}"><font color={{item["waist"]["displayColor"]}}><b>{{item["waist"]["name"]}}</b></font></a>
 										</td>
@@ -187,7 +194,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["rightFinger"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Right Finger</b>
+											<b><i>Right Finger</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["rightFinger"]["tooltipParams"]}}"><font color={{item["rightFinger"]["displayColor"]}}><b>{{item["rightFinger"]["name"]}}</b></font></a>
 										</td>
@@ -203,7 +210,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["mainHand"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Main Hand</b>
+											<b><i>Main Hand</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["mainHand"]["tooltipParams"]}}"><font color={{item["mainHand"]["displayColor"]}}><b>{{item["mainHand"]["name"]}}</b></font></a>
 										</td>
@@ -217,7 +224,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["legs"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Legs</b>
+											<b><i>Legs</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["legs"]["tooltipParams"]}}"><font color={{item["legs"]["displayColor"]}}><b>{{item["legs"]["name"]}}</b></font></a>
 										</td>
@@ -231,7 +238,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["offHand"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Off Hand</b>
+											<b><i>Off Hand</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["offHand"]["tooltipParams"]}}"><font color={{item["offHand"]["displayColor"]}}><b>{{item["offHand"]["name"]}}</b></font></a>
 										</td>
@@ -249,7 +256,7 @@
 											<img border="0" src="http://media.blizzard.com/d3/icons/items/small/{{item["feet"]["icon"]}}.png">
 										</td>
 										<td>
-											<b>Feet</b>
+											<b><i>Feet</i></b>
 											<br>
  											<a href="http://us.battle.net/d3/en/{{item["feet"]["tooltipParams"]}}"><font color={{item["feet"]["displayColor"]}}><b>{{item["feet"]["name"]}}</b></font></a>
 										</td>
@@ -263,4 +270,8 @@
 				</div>
 			</div>
 		</div>
-	</body>	
+	</body>
+	<hr>
+	<footer class="container">
+  		<p>Posted by: Mochi</p>
+	</footer>
