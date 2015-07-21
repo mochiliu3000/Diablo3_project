@@ -146,4 +146,4 @@ def mongoHeroItemInfoExtract():
 	except Exception as e:
 		print("Error: ", type(e), e)
 
-mongoHeroItemInfoExtract()
+# mongoHeroItemInfoExtract()
