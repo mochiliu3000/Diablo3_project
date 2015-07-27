@@ -2,6 +2,13 @@ from flask import Flask, render_template, request
 from pymongo import MongoClient
 
 app = Flask(__name__)
+###TO TEST THIS WITH wsgi MODULE ON APACHE2, UNCOMMENT THE FOLLOWING CODE:
+#from werkzeug.debug import DebuggedApplication
+#app.debug = True
+#app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
+
+#Reference: https://github.com/yolesaber/micromtn/blob/master/articles/HostingWithApache.md; http://werkzeug.pocoo.org/docs/0.10/debug/
+
 
 def getRankData(targetRank, targetHeroId):
 	connection = MongoClient('localhost',27017)
@@ -68,4 +75,5 @@ def rank():
 
 # No need to restart the server when you set 'debug = True' and change your source code	
 if __name__ == '__main__':
-	app.run(debug = True)
+	app.debug = True
+	app.run()
