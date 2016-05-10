@@ -40,7 +40,7 @@ python3 D3CrawlerDemo.py<br>
 (This will automaticly create a new database in Mongodb called D3 and import top 100 leader board data from:<br> http://us.battle.net/d3/en/rankings/era/2/rift-wd)<br>
 7. Deploy Flask website on Apache2 server: follow https://github.com/yolesaber/micromtn/blob/master/articles/HostingWithApache.md<br>
 sudo apt-get install apache2 libapache2-mod-wsgi<br>
-cd //var/www/Diablo3_project/Deployment<br>
+cd /var/www/Diablo3_project/Deployment<br>
 sudo nano app.wsgi<br>
 (Double check the path and name)<br>
 sudo nano app.com.conf<br>
